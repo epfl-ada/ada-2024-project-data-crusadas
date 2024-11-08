@@ -2,7 +2,7 @@
 BeerAdvocate/
 matched_beer_data/
 RateBeer/
-
+merged_dataset/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
