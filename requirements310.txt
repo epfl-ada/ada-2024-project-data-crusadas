@@ -1,0 +1,22 @@
+# Data manipulation and analysis
+pandas
+numpy
+
+# Visualization
+matplotlib
+seaborn
+
+# Natural Language Processing
+nltk
+spacy
+
+# Transformers and Deep Learning
+transformers
+tqdm
+
+# Machine Learning and Similarity Calculations
+scikit-learn
+scipy
+gensim
+pyLDAvis
+wordcloud
