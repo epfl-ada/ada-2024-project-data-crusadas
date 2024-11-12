@@ -1,6 +1,38 @@
 
 # Data CrusADAs
 
+# From Hops to Glass
+## A Comprehensive Analysis of Beer Characteristics
+
+### Abstract
+This study explores various analytical methods to understand trends, preferences, and perceptions in the beer industry, focusing on the popular IPA category. We investigate the factors driving IPA growth, including correlations between positive reviews and market expansion. Through trend analysis, beers are grouped by type, with growth patterns and yearly changes calculated as percentages. A recommendation system employing K-means clustering and a matrix of raters-to-beers is developed to suggest beers based on user preferences. Additionally, we analyze the link between user emotions and beer reviews by mapping sentiment to the Big Five personality traits. Finally, we explore variation in descriptions of the same beer to determine if different users experience and describe beers uniquely. This comprehensive analysis provides insights into consumer behavior and potential tools for personalized beer recommendations.
+
+### Research questions
+- What makes a trend grow
+- What are the characteristic of a given beer based on commentary
+
+### Proposed additional datasets
+ - 
+
+### Methods
+- LDA
+- Word Clouds
+- Statistical Analysis
+- 
+
+### Proposed timeline
+?
+
+### Organization within the team
+#### Dispatch 
+- Arnault -> Basic analysis + IPA analysis
+- Valentin + Guillen + Dani -> link user emotion + Different description for same beer
+- Anas -> Merging datasets
+
+
+
+
+
 ## Meeting 01.11.2024
 Important things is not to do very hard things but more to be really acurate in what we analyse and make clear description, visual one too, see [oldProject](https://hadriensevel.github.io/vivalavada/#fnref:3)
 
