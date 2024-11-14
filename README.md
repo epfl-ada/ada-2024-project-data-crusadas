@@ -1,6 +1,25 @@
 
 # Data CrusADAs
 
+
+## Meeting 14.11.2024
+For now we don't use the merging to the preprocessing, but we show it
+
+### pipeline : 
+Week 1: Rise of IPA, Merging datasets
+Week 2: Recommender system, NLP, 
+Week 3: Merging results, filtering informations, conclusion on the results
+Week 4: Clean git, work on deliverable, work on website
+
+Need to clean the repo!
+
+### TODO for m2
+- Preprocessing from Dani
+- Filter from Guillen
+- Make final notebook (Arnault)
+- Readme (Valentin)
+- Clean repo (Valentin)
+
 # From Hops to Glass
 ## A Comprehensive Analysis of Beer Characteristics
 
@@ -12,7 +31,7 @@ This study explores various analytical methods to understand trends, preferences
 - What are the characteristic of a given beer based on commentary
 
 ### Proposed additional datasets
- - 
+ There are no direct additional datasets.
 
 ### Methods
 - LDA
@@ -21,7 +40,11 @@ This study explores various analytical methods to understand trends, preferences
 - 
 
 ### Proposed timeline
-?
+Week 1 : 
+Week 2 : 
+Week 3 : 
+Week 4 : 
+Week 5 : 
 
 ### Organization within the team
 #### Dispatch 
