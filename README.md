@@ -39,7 +39,6 @@ could also explain it.
 Using NLP for analyzing beer descriptions involves extracting meaningful
 insights from textual data, such as customer reviews or tasting notes,
 to better understand perceptions, preferences, and trends.
-Topic Modeling for Descriptions
 
 - <b> Topic Modeling for Descriptions </b>
 
