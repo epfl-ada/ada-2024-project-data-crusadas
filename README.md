@@ -111,6 +111,26 @@ How: Use time series analysis to detect trends in descriptor usage
 (e.g., increasing mentions of "juicy" in IPAs) or variations in average
 ratings by year.
 
+#### Clustering and Classification
+
+- <b> Beer similarity Analysis </b>
+
+Purpose: Group beers based on shared characteristics or user preferences.
+
+How: Identify common words or features in beer descriptions and use a metric to measure similarity between beers.
+
+- <b> Cluster Analysis </b>
+
+Purpose: Identify patterns or groups in beer descriptions or ratings.
+
+How: Construct a graph from beer similarities and apply clustering algorithms like Louvain to detect communities of similar beers.
+
+- <b> Classification of Beer Styles </b>
+
+Purpose: Better description of the automatically contructed clusters.
+
+How: Analyse the clusters to find the most common words and beers in each cluster.
+
 #### Recommander system
 - <b> Content-Based Recommendation </b>
 
