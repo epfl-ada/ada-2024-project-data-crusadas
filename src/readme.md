@@ -17,11 +17,12 @@ Val, Dani, Arnault, Guillen work on cluster analysis
 Anas will share the clusters
 
 #### Cluster assignment
-(2 is IPA so already done)
-Val 0, 1
-Dani 3,4
-Arnault 5,6
-guillen 7,8
+- (2 is IPA so already done)
+- Val 0, 1
+- Dani 3,4
+- Arnault 5,6
+- guillen 7,8
+
 One notebook per cluster
 
 ### Web
