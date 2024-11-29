@@ -1,3 +1,33 @@
+## Meeting 29.11.2024
+
+### Refined the proposal, need an overall goal
+
+We create clusters of beer then 
+Make a recommander that given a user assign them a cluster they will like
+We don't ask the user for the data, we extract them from the reviews
+Some cluster analysis is good to have
+
+### Discuss who does what
+
+Anas has done work on clustering, the work on IPA should be also done on those clusters
+
+Val will take the refined proposal the office hours
+Anas will do the recommander
+Val, Dani, Arnault, Guillen work on cluster analysis
+Anas will share the clusters
+
+#### Cluster assignment
+(2 is IPA so already done)
+Val 0, 1
+Dani 3,4
+Arnault 5,6
+guillen 7,8
+One notebook per cluster
+
+### Web
+No Assignee yet : Start the structure of the web 
+
+
 
 
 ## Meeting 14.11.2024
