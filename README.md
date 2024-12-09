@@ -3,21 +3,8 @@
 ## A Comprehensive Analysis of Beer Characteristics
 
 ### Abstract
-This study explores various analytical methods to understand trends,
-preferences, and perceptions in the beer industry,
-focusing on the popular IPA category.
-We investigate the factors driving IPA growth,
-including correlations between positive reviews and market expansion.
-Through trend analysis, beers are grouped by type,
-with growth patterns and yearly changes calculated as percentages.
-A recommendation system is developed to suggest
-beers based on user preferences. Additionally,
-we analyze the link between user emotions and beer reviews
-by mapping sentiment to the Big Five personality traits.
-Finally, we explore variation in descriptions of the same beer to determine
-if different users experience and describe beers uniquely.
-This comprehensive analysis provides insights into consumer behavior
-and potential tools for personalized beer recommendations.
+This study employs a range of analytical techniques to uncover trends, preferences, and perceptions within the beer industry. Using natural language processing (NLP) methods, we analyze reviews from BeerAdvocate to identify clusters of beers and explore the key words and characteristics that distinguish them from one another. For each cluster, we highlight the primary flavor and appearance features that define it. We then compare these characteristics across clusters to identify patterns and differences. Additionally, we examine how these clusters evolve seasonally, over time, and across different countries.
+To further understand these patterns, we apply principal component analysis (PCA) to extract and interpret the main components that define each cluster. The ultimate goal of this research is to develop a model that can assign a cluster to a user based on their preferences, allowing for personalized beer recommendations through a web-based questionnaire. This research offers valuable insights for brewers, marketers, and consumers by enhancing the understanding of beer diversity and evolving consumer preferences.
 
 ### Some research questions we aim to answer
 1. What makes a brand grow? A beer has differents characteristics
