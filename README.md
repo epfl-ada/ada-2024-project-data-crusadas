@@ -10,14 +10,13 @@ We also examine the emotional responses associated with each beer cluster, focus
 To further understand these patterns, we apply principal component analysis (PCA) to extract and interpret the main components that define each cluster. The ultimate goal of this research is to develop a model capable of assigning a beer cluster to a user based on their preferences, allowing the user to discover the cluster that best aligns with their tastes through a web-based questionnaire. This research offers valuable insights for brewers, marketers, and consumers by enhancing the understanding of beer diversity and evolving consumer preferences.
 
 ### Some research questions we aim to answer
-1. What makes a brand grow? A beer has differents characteristics
-we want to understand which impact the grows and how, maybe some other factors
-could also explain it.
-1. What are the characteristic of a given beer based on commentary?
-1. Given a set of characteristic what is the closests beer? 
-1. Given a commentary what is the mood of the user that makes it?
-1. Is there a link between flavours and commentary emotions?
-1. Given all reviews made by a user, what is their score on the big five personality trait?
+1. What are the main features that define the primary beer categories?
+2. How do the flavor and appearance features of beers differ across those categories?
+3. What are the seasonal, annual, and geographic patterns for those categories?
+4. Given a review, what is the mood of the user who wrote it?
+5. Is there a connection between beer flavors/appearance features and the emotional tone of the commentary?
+6. How do emotional responses vary across different beer categories and clusters?
+7. How can the results from PCA be used to better understand the relationships between different beer clusters and consumer preferences?
 
 
 ### Proposed additional datasets
