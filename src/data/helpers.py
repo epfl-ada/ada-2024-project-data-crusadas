@@ -64,6 +64,13 @@ tqdm.pandas()
 from collections import Counter
 import plotly.express as px
 
+import string
+import swifter
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.decomposition import TruncatedSVD
+from sklearn.preprocessing import StandardScaler
+
 flavor_descriptors = [
     'hoppy', 'bitter', 'citrus', 'pine', 'floral', 'malty', 'sweet', 'roasted', 'caramel',
     'chocolate', 'coffee', 'fruit', 'spicy', 'herbal', 'earthy', 'toffee', 'tropical', 'yeast',
@@ -420,4 +427,118 @@ def geographic_distribution_cluster(cluster_number, cluster_name, cluster_df):
     ax_europe.set_xlim([-12, 45])  # Longitude limits for Europe
     ax_europe.set_ylim([36, 70])   # Latitude limits for Europe
 
+    plt.show()
+
+# to see how I obtained this beer lexicon, check out Extract_feats_from_reviews_Guillen.ipynb --- EXPLAIN
+beer_lexicon = {
+    'beer', 'ale', 'lager', 'stout', 'porter', 'pilsner', 'ipa', 'brewer', 
+ 'brewery', 'brewing', 'draft', 'cask', 'bottle', 'glass', 'pour', 'tap','head', 'foam', 
+    'frothy', 'bubbly', 'carbonated', 'flat', 'clarity','hazy', 'opaque', 'cloudy', 'clear', 'golden', 'amber', 'brown', 'dark', 
+ 'black', 'mahogany', 'ruby', 'white', 'pale', 'yellow', 'beige', 'red', 
+ 'floral', 'herbal', 'earthy', 'spicy', 'citrusy', 'fruity', 'sweet', 
+ 'sour', 'bitter', 'bitterness', 'smooth', 'rich', 'dry', 'crisp', 'creamy', 
+ 'sticky', 'tart', 'tangy', 'sweetness', 'malty', 'hoppy', 'aromatic', 
+ 'aroma', 'aftertaste', 'subtle', 'intense',
+'barley', 'malt', 'malty', 'grain', 'yeast', 'hops', 'hop', 'water', 
+ 'spices', 'vanilla', 'chocolate', 'caramel', 'toffee', 'coffee', 'cocoa', 
+ 'citrus', 'orange', 'lemon', 'grapefruit', 'pine', 'oak', 'nutty', 'raisin', 
+ 'plum', 'cherry', 'maple', 'banana', 'berry', 'ginger','session', 'sessionable', 'pint', 'ounce', 'ounce', 'snifter', 'chalice', 
+ 'pub', 'bar', 'draught', 'taste', 'drink', 'drinker', 'sip', 'gulp', 
+ 'quaffable','balanced', 'strong', 'bold', 'weak', 'delicate', 'refreshing', 'complex', 
+ 'light', 'heavy', 'moderate', 'intense', 'robust', 'unique', 'classic', 
+ 'distinctive', 'remarkable', 'awesome', 'excellent', 'superb', 'good', 
+ 'decent', 'ok', 'average', 'bad', 'boring', 'cheap', 'quality','balanced', 'strong', 'bold', 'weak', 'delicate', 'refreshing', 'complex', 
+ 'light', 'heavy', 'moderate', 'intense', 'robust', 'unique', 'classic', 
+ 'distinctive', 'remarkable', 'awesome', 'excellent', 'superb', 'good', 
+ 'decent', 'ok', 'average', 'bad', 'boring', 'cheap', 'aged', 'vintage', 'cellar', 'oak', 'barrel', 'reserve', 'craft', 'microbrewery', 'homebrew', 'regional', 'seasonal', 'festive', 
+ 'holiday', 'celebration', 'festival', 'special'}
+
+
+# for a review just keep the words that are in the beer lexicon
+def clean_text_lexicon(text):
+    text = text.lower()
+    cleaned_text = [word for word in text.split() if word in beer_lexicon]
+    return " ".join(cleaned_text)
+
+def beer_processing_pca(partition, ba_beers_df, ba_reviews_df):
+
+    beer_cluster_map = {int(k): v for k, v in partition.items()}
+    # Add cluster information to beers
+    ba_beers_df["cluster"] = ba_beers_df["beer_id"].map(beer_cluster_map)
+
+    # Filter reviews to only those beers in the cluster map
+    ba_reviews_df = ba_reviews_df[ba_reviews_df["beer_id"].isin(beer_cluster_map.keys())]
+
+    # Drop rows without text and ensure text is a string
+    ba_reviews_df = ba_reviews_df.dropna(subset=["text"])
+    ba_reviews_df["text"] = ba_reviews_df["text"].astype(str)
+
+    beer_texts = (
+    ba_reviews_df.groupby("beer_id")["text"]
+    .agg(' '.join)
+    .reset_index()
+    )
+
+    # Merge with cluster information
+    beer_texts = beer_texts.merge(ba_beers_df[["beer_id", "cluster"]], on="beer_id", how="left")
+    beer_texts = beer_texts.dropna(subset=["cluster"])
+
+    # Convert cluster to category for efficiency
+    beer_texts["cluster"] = beer_texts["cluster"].astype("category")
+
+    # Keep only the first 9 clusters (0 through 8)
+    clusters_to_keep = list(range(9))
+    beer_texts = beer_texts[beer_texts["cluster"].isin(clusters_to_keep)]
+
+    # IMPORTANT: Remove unused categories after filtering
+    beer_texts["cluster"] = beer_texts["cluster"].cat.remove_unused_categories()
+
+    beer_texts["clean_text"] = beer_texts["text"].swifter.apply(clean_text_lexicon)
+
+    # TF-IDF Vectorization
+    vectorizer = TfidfVectorizer(
+        #stop_words="english",
+        max_features=1000,
+        ngram_range=(1, 2),
+        min_df=5,
+        max_df=0.5
+    )
+
+    X = vectorizer.fit_transform(beer_texts["clean_text"])
+    # PCA via TruncatedSVD (for sparse data)
+    n_components = 5
+    svd = TruncatedSVD(n_components=n_components, random_state=42)
+    X_pca = svd.fit_transform(X)
+
+    # Attach PCA components back to DataFrame
+    for i in range(n_components):
+        beer_texts[f"PC{i+1}"] = X_pca[:, i]
+        
+    terms = np.array(vectorizer.get_feature_names_out())
+    
+    return svd, terms, beer_texts
+
+def create_superposed_spider_chart(normalized_means):
+    angles = np.linspace(0, 2 * np.pi, num_vars, endpoint=False).tolist()
+    angles += angles[:1]
+
+    fig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
+
+    # Colors for each cluster
+    colors = plt.cm.tab10(np.linspace(0, 1, len(normalized_means)))
+
+    # Plot each cluster
+    for cluster_id, means in enumerate(normalized_means):
+        data = means.tolist() + [means[0]]  # Close the circle
+        ax.plot(angles, data, label=cluster_mapping[cluster_id], linewidth=2)
+        #ax.fill(angles, data, alpha=0.1)
+
+    # Aesthetic adjustments
+    ax.set_yticks([-2, -1, -0.5, 0, 0.5, 1, 2])
+    ax.set_yticklabels(['-2', '-1', '-0.5', '0', '0.5', '1', '2'], color="gray", size=10)
+    ax.set_xticks(angles[:-1])
+    ax.set_xticklabels(labels, size=12)
+
+    ax.set_title("Superposed Spider Map (Normalized)", size=16, pad=20)
+    ax.legend(loc='upper right', bbox_to_anchor=(1.5, 1.1))
     plt.show()
