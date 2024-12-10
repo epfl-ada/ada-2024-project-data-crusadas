@@ -3,31 +3,16 @@
 ## A Comprehensive Analysis of Beer Characteristics
 
 ### Abstract
-This study explores various analytical methods to understand trends,
-preferences, and perceptions in the beer industry,
-focusing on the popular IPA category.
-We investigate the factors driving IPA growth,
-including correlations between positive reviews and market expansion.
-Through trend analysis, beers are grouped by type,
-with growth patterns and yearly changes calculated as percentages.
-A recommendation system is developed to suggest
-beers based on user preferences. Additionally,
-we analyze the link between user emotions and beer reviews
-by mapping sentiment to the Big Five personality traits.
-Finally, we explore variation in descriptions of the same beer to determine
-if different users experience and describe beers uniquely.
-This comprehensive analysis provides insights into consumer behavior
-and potential tools for personalized beer recommendations.
+This study employs a range of analytical techniques to uncover trends, preferences, and perceptions within the beer industry. Using natural language processing (NLP) methods, we analyze reviews from BeerAdvocate to identify distinct clusters of beers and explore the key words and characteristics that differentiate them. For each cluster, we highlight the primary flavor and appearance features that define it and compare these characteristics across clusters to identify patterns and differences. Additionally, we investigate how these clusters evolve seasonally, over time, and across different countries.
+
+We also examine the emotional responses associated with each beer cluster, focusing on how specific appearance features and flavor profiles elicit distinct emotions.
+
+To deepen our understanding, we apply principal component analysis (PCA) to extract and interpret the main components that define each cluster. The ultimate goal of this research is to develop a model capable of assigning a beer cluster to a user based on their preferences, allowing the user to discover the cluster that best aligns with their tastes through a web-based questionnaire. This research provides valuable insights for brewers, marketers, and consumers, enhancing the understanding of beer diversity and evolving consumer preferences.
 
 ### Some research questions we aim to answer
-1. What makes a brand grow? A beer has differents characteristics
-we want to understand which impact the grows and how, maybe some other factors
-could also explain it.
-1. What are the characteristic of a given beer based on commentary?
-1. Given a set of characteristic what is the closests beer? 
-1. Given a commentary what is the mood of the user that makes it?
-1. Is there a link between flavours and commentary emotions?
-1. Given all reviews made by a user, what is their score on the big five personality trait?
+1. What are the main features defining main beer categories?
+2. Given a commentary what is the mood of the user that makes it?
+3. Is there a link between flavours and commentary emotions?
 
 
 ### Proposed additional datasets
