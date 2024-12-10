@@ -11,8 +11,12 @@ To deepen our understanding, we apply principal component analysis (PCA) to extr
 
 ### Some research questions we aim to answer
 1. What are the main features defining main beer categories?
-2. Given a commentary what is the mood of the user that makes it?
-3. Is there a link between flavours and commentary emotions?
+2. How do the flavor and appearance features of beers differ across clusters?
+3. What are the seasonal, annual, and geographic patterns in beer preferences and reviews?
+4. Given a review, what is the mood of the user who wrote it?
+5. Is there a connection between beer flavors and the emotional tone of the commentary?
+6. Can we predict a user's preferred beer cluster based on their tastes and preferences?
+7. How do emotional responses vary across different beer categories and clusters?
 
 
 ### Proposed additional datasets
