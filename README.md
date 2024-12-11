@@ -22,11 +22,18 @@ To deepen our understanding, we apply principal component analysis (PCA) to extr
 10. Which questions are most relevant for assigning a user to a beer cluster?
 
 ### Proposed additional datasets
- There are no direct additional datasets.
+We did not include additional datasets in this analysis. Our focus remained on the BeerAdvocate dataset due to several key considerations: managing computational complexity, ensuring the coherence of the datastory, and maintaining consistency in the language used within the reviews.
 
 ### Methods
 
+#### Clustering
+
+Generating a similarity graph and clustering beers based on review characteristics using natural language processing (NLP) methods. The process involves tokenizing reviews, filtering discriminative words, computing cosine similarity, constructing a similarity graph, and applying the Louvain algorithm for clustering, with computationally intensive tasks optimized for parallel processing on an HPC cluster.
+
+Goal: find main clusters of beers in the BeerAdvocate dataset
+
 #### Natural Language Processing (NLP)
+
 Using NLP for analyzing beer descriptions involves extracting meaningful
 insights from textual data, such as customer reviews or tasting notes,
 to better understand perceptions, preferences, and trends.
