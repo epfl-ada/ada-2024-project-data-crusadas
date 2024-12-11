@@ -34,9 +34,11 @@ Goal: find main clusters of beers in the BeerAdvocate dataset
 
 #### Natural Language Processing (NLP)
 
-Using NLP for analyzing beer descriptions involves extracting meaningful
-insights from textual data, such as customer reviews or tasting notes,
-to better understand perceptions, preferences, and trends.
+- <b> Extract main beer charcteristics </b>
+
+The method processes beer reviews by filtering, tokenizing, and analyzing word frequencies. First, reviews are filtered based on a minimum review threshold, with a cap on the maximum number of reviews per beer, and a random sample is selected for analysis. Next, text data is preprocessed and tokenized into meaningful words. Finally, the method counts the occurrences of specific descriptive words and compares their frequencies.
+
+Goal: Find the main appearance and falvor features of each beer cluster
 
 - <b> Topic Modeling for Descriptions </b>
 
