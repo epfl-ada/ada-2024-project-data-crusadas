@@ -36,49 +36,31 @@ Goal: find main clusters of beers in the BeerAdvocate dataset
 
 - <b> Extract main beer charcteristics </b>
 
-The method processes beer reviews by filtering, tokenizing, and analyzing word frequencies. First, reviews are filtered based on a minimum review threshold, with a cap on the maximum number of reviews per beer, and a random sample is selected for analysis. Next, text data is preprocessed and tokenized into meaningful words. Finally, the method counts the occurrences of specific descriptive words and compares their frequencies.
+The method involves preprocessing, filtering, and analyzing beer reviews. First, reviews are preprocessed by converting text to lowercase, tokenizing, removing punctuation and stopwords, and lemmatizing words. Next, beers with a minimum number of reviews are selected, and reviews are limited to a maximum per beer for computational efficiency. Finally, word frequencies for specific descriptors are computed and compared to identify distinguishing characteristics between beer categories. The main appearance and flavor words are manually selected from the most frequent terms identified in the tokenized reviews. These words are chosen based on their relevance to the beer's characteristics, ensuring they accurately represent the key attributes of each beer category. This selection process helps focus the analysis on the most distinguishing features in the reviews. 
 
-Goal: Find the main appearance and falvor features of each beer cluster
+Goal: Find the main appearance and flavor features of each beer cluster
 
-- <b> Topic Modeling for Descriptions </b>
+- <b> Beer lexicon extractraction </b>
 
-Goal : Identify common themes or topics in beer descriptions.
+The method involves processing beer reviews to extract meaningful features for analysis. First, the reviews are tokenized by removing stopwords and punctuation, applying lemmatization, and retaining only nouns and adjectives to focus on descriptive content. Next, a Term Frequency-Inverse Document Frequency (TF-IDF) vectorizer is used to create a feature matrix, limiting the vocabulary to the 1,000 most important terms that appear in at least 0.5% of the reviews. This representation highlights terms that are both frequent and distinctive, enabling further clustering and analysis of beer descriptions.
 
-How: By applying topic modeling techniques like LDA,
-you can uncover recurring aspects (e.g., "hoppy", "citrusy", "malty")
-across reviews to group beers by shared characteristics
+Goal: prepare the reviews for principal component analysis. The focus is here on the beer lexicon. 
 
-- <b> Sentiment Analysis </b>
+#### Principal components analysis (PCA)
 
-Purpose: Assess overall sentiments in beer reviews to determine customer satisfaction.
+Before applying this method, beer lexicon extractraction using NLP is computed on the reviews. 
 
-How: Analyze whether the descriptions are predominantly positive, negative,
-or neutral, and correlate this sentiment to beer ratings or popularity.
+The method applies TF-IDF vectorization to transform beer review texts into numerical features, capturing the importance of words and phrases (up to bigrams) based on their frequency across the dataset. It then reduces the dimensionality of the data using TruncatedSVD (a form of PCA suited for sparse data) to extract the top 5 principal components (PCs), which summarize the underlying structure of the reviews. Finally, the method performs an ANOVA test to examine significant differences across beer clusters for each principal component and inspects the most influential terms for each component to interpret the key features driving each of the PCA axis. 
 
-- <b> Emotion Detection </b>
+By manually analysing the positively and negatively contributing words for each PCA axis, we identified key features that distinguish positively and negatively contributing words for each axis. Based on this analysis, we crafted a series of questions, each reflecting a specific aspect of the principal components, which a user can answer on a scale from -1 to +1. The responses to these questions are then used to assign the user to the most appropriate beer cluster.
 
-Purpose: Link reviews to specific emotions (e.g., happiness, nostalgia)
-and associate them with beer styles or brands.
+Goal: craft questions that assign a user to a community (cluster)
 
-How: Map keywords or expressions in reviews to emotional dimensions
-for richer consumer insights.
+#### Emotion detection (using NRCLex librairy)
 
-- <b> Personality Insights (Big Five Framework) </b>
+The method is used to extract emotional content from beer reviews using the NRCLex library, which analyzes the text and generates affect frequencies for various emotions. It applies NRCLex to each review, extracting emotional frequencies for categories such as joy, sadness, and anger, and stores these values in new columns. The emotional data is then merged with the original reviews, enabling further analysis of the emotional tone within the dataset.
 
-Purpose: Understand how personality traits influence
-beer preferences and descriptions.
-
-How: Use linguistic cues in text to predict personality traits and analyze their
-association with certain beers or styles.
-
-- <b> Semantic Similarity Analysis </b>
-
-Purpose: Compare descriptions of the same beer by different users to
-identify overlaps and divergences.
-
-How: Use text similarity measures to assess how consistently a beer is
-described and what might drive differences (e.g., user experience
-or tasting environment).
+Goal: Analyze the emotional tones expressed in reviews, either grouped by cluster or associated with individual words.
 
 #### Statistical analysis
 Using statistical analysis for beer descriptions allows you
