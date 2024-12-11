@@ -26,6 +26,8 @@ We did not include additional datasets in this analysis. Our focus remained on t
 
 ### Methods
 
+Here is a list of the main methods used in this project. We did not include as methods all the code used to process panda dataframes and show our graphs.
+
 #### Clustering
 
 Generating a similarity graph and clustering beers based on review characteristics using natural language processing (NLP) methods. The process involves tokenizing reviews, filtering discriminative words, computing cosine similarity, constructing a similarity graph, and applying the Louvain algorithm for clustering, with computationally intensive tasks optimized for parallel processing on an HPC cluster.
@@ -54,7 +56,7 @@ The method applies TF-IDF vectorization to transform beer review texts into nume
 
 By manually analysing the positively and negatively contributing words for each PCA axis, we identified key features that distinguish positively and negatively contributing words for each axis. Based on this analysis, we crafted a series of questions, each reflecting a specific aspect of the principal components, which a user can answer on a scale from -1 to +1. The responses to these questions are then used to assign the user to the most appropriate beer cluster.
 
-Goal: craft questions that assign a user to a community (cluster)
+Goal: craft questions that assign (recommand) a user to a community (cluster). 
 
 #### Emotion detection (using NRCLex librairy)
 
@@ -62,105 +64,32 @@ The method is used to extract emotional content from beer reviews using the NRCL
 
 Goal: Analyze the emotional tones expressed in reviews, either grouped by cluster or associated with individual words.
 
-#### Statistical analysis
-Using statistical analysis for beer descriptions allows you
-to quantitatively explore patterns,
-relationships, and trends in the data. 
+#### Image generation (DALL·E)
 
-- <b> Descriptive Statistics </b>
+One of our methods involves using DALL·E to generate visual representations for each beer cluster. For each cluster, we provided a list of the top five beer styles associated with it, and DALL·E created an image that reflects these styles, offering a visual interpretation of the cluster's characteristics.
 
-Purpose: Summarize key attributes of beer reviews,
-such as average rating, word count, or frequency of certain descriptors
-(e.g., "hoppy," "bitter").
+Goal: Create visual representations of the typical beer for each cluster.
 
-How: Compute measures like means, medians, and variances to understand
-general trends in how beers are described and rated.
+### Organisation within team
 
-- <b> Correlation Analysis </b>
+Dani:     1. Implementation of the NLP methods for extracting main beer charcteristics 
+          2. Conceptualization and implementation of the PCA method
+          3. Creation of graphs for the analyzing the characteristics within each cluster
 
-Purpose: Investigate relationships between variables,
-such as the frequency of positive comments and a beer's growth
-in popularity.
+Guillen:  1. Implementation of the NLP methods for the beer lexicon extractraction 
+          2. Implemention of Emotion detection (using NRCLex librairy)
+          3. Extraction questions for the PCA axis interpretation
 
-How: Measure correlations between descriptors (e.g., "fruity")
-and numerical outcomes (e.g., rating, sales, or growth percentage).
+Arnault:  1. Creation of the datastory and visualization and analysis of the results within the project
+          2. Creation of images using Dall.e 
+          3. Cleaning of the result.ipynb and of the GitHub for rendering the project
 
-- <b> Trend Analysis </b>
+Anas:     1. Conceptualization and implementation of the clustering method (a lot of work)
+          2. Help in the creation of the PCA methods and coming up with ideas for the different methods in the project
+          3. Creation of the website
 
-Purpose: Identify changes over time in beer descriptions and ratings.
+Valentin: 1. Attending groups meetings
+          2. Creation of the website
 
-How: Use time series analysis to detect trends in descriptor usage
-(e.g., increasing mentions of "juicy" in IPAs) or variations in average
-ratings by year.
 
-#### Clustering and Classification
-
-- <b> Beer similarity Analysis </b>
-
-Purpose: Group beers based on shared characteristics or user preferences.
-
-How: Identify common words or features in beer descriptions and use a metric to measure similarity between beers.
-
-- <b> Cluster Analysis </b>
-
-Purpose: Identify patterns or groups in beer descriptions or ratings.
-
-How: Construct a graph from beer similarities and apply clustering algorithms like Louvain to detect communities of similar beers.
-
-- <b> Classification of Beer Styles </b>
-
-Purpose: Better description of the automatically contructed clusters.
-
-How: Analyse the clusters to find the most common words and beers in each cluster.
-
-#### Recommander system
-- <b> Content-Based Recommendation </b>
-
-Purpose: Suggest beers similar to those a user has enjoyed,
-based on their descriptions or attributes.
-
-How: Match beer features (e.g., "hoppy," "citrusy") to user preferences
-derived from past reviews or ratings.
-
-Example: If a user likes "fruity" and "light-bodied" beers,
-recommend others with similar descriptors.
-
-- <b> Collaborative Filtering </b>
-
-Purpose: Recommend beers based on the preferences of similar users.
-
-How: Analyze patterns in user ratings or reviews to identify clusters
-of users with shared tastes, then suggest beers that like-minded users
-have enjoyed.
-
-Example: If a user enjoys a beer that another user with similar preferences
-liked, recommend beers from the latter’s list.
-
-- <b> Matrix Factorization </b>
-
-Purpose: Identify latent factors (hidden patterns) in user-beer interactions.
-
-How: Use techniques like Singular Value Decomposition (SVD) to break down
-large rating matrices into lower dimensions, uncovering relationships between
-users and beers.
-
-Example: Factorize user-beer ratings to predict a user’s likelihood
-of enjoying a new beer based on similar latent factors.
-
-### Timeline and organisation
-- Week 1: 
-  - There is 2 differents tables that contains some of the same datas, those
-  needs to be carefully merged so we don't lose and/or duplicate informations
-  - Implement NLP
-  - Analyse the rise of IPA
-- Week 2:
-  - Implement recommander system
-- Week 3: 
-  - Merging results
-  - filtering informations
-  - conclusion on the results
-- Week 4:
-  - Clean git
-  - work on deliverable
-  - work on website
 
