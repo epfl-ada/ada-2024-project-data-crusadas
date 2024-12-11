@@ -26,13 +26,15 @@ We did not include additional datasets in this analysis. Our focus remained on t
 
 ### Methods
 
-Here is a list of the main methods used in this project. We did not include as methods all the code used to process panda dataframes and show our graphs.
+Here is a list of the main methods used in this project. We did not include as methods all the code used to process panda dataframes and show our graphs (basic code from the course).
 
 #### Clustering
 
 Generating a similarity graph and clustering beers based on review characteristics using natural language processing (NLP) methods. The process involves tokenizing reviews, filtering discriminative words, computing cosine similarity, constructing a similarity graph, and applying the Louvain algorithm for clustering, with computationally intensive tasks optimized for parallel processing on an HPC cluster.
 
 Goal: find main clusters of beers in the BeerAdvocate dataset
+
+Folder: scr/scripts/graph_and_clustering
 
 #### Natural Language Processing (NLP)
 
@@ -42,11 +44,15 @@ The method involves preprocessing, filtering, and analyzing beer reviews. First,
 
 Goal: Find the main appearance and flavor features of each beer cluster
 
+File: <span style="color:red">TODO</span>
+
 - <b> Beer lexicon extractraction </b>
 
 The method involves processing beer reviews to extract meaningful features for analysis. First, the reviews are tokenized by removing stopwords and punctuation, applying lemmatization, and retaining only nouns and adjectives to focus on descriptive content. Next, a Term Frequency-Inverse Document Frequency (TF-IDF) vectorizer is used to create a feature matrix, limiting the vocabulary to the 1,000 most important terms that appear in at least 0.5% of the reviews. This representation highlights terms that are both frequent and distinctive, enabling further clustering and analysis of beer descriptions.
 
 Goal: prepare the reviews for principal component analysis. The focus is here on the beer lexicon. 
+
+File: <span style="color:red">TODO</span>
 
 #### Principal components analysis (PCA)
 
@@ -58,17 +64,23 @@ By manually analysing the positively and negatively contributing words for each 
 
 Goal: craft questions that assign (recommand) a user to a community (cluster). 
 
+File: scr/scripts/cluster_recommander
+
 #### Emotion detection (using NRCLex librairy)
 
 The method is used to extract emotional content from beer reviews using the NRCLex library, which analyzes the text and generates affect frequencies for various emotions. It applies NRCLex to each review, extracting emotional frequencies for categories such as joy, sadness, and anger, and stores these values in new columns. The emotional data is then merged with the original reviews, enabling further analysis of the emotional tone within the dataset.
 
 Goal: Analyze the emotional tones expressed in reviews, either grouped by cluster or associated with individual words.
 
+File: scr/scripts/Emo2Cluster
+
 #### Image generation (DALL·E)
 
 One of our methods involves using DALL·E to generate visual representations for each beer cluster. For each cluster, we provided a list of the top five beer styles associated with it, and DALL·E created an image that reflects these styles, offering a visual interpretation of the cluster's characteristics.
 
 Goal: Create visual representations of the typical beer for each cluster.
+
+File: src/data/beer_images
 
 ### Organisation within team
 
