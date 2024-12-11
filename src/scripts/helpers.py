@@ -615,3 +615,111 @@ def display_path_2D(cluster_means, user_answers):
     plt.ylabel("PCA Component 2")
     plt.legend()
     plt.show()
+
+def show_spider_emotions(merged_df):
+
+    emotions_list = ['fear', 'anger', 'trust', 'surprise', 'positive', 'negative', 'sadness', 'disgust', 'joy', 'anticipation']
+
+    # filter the dataframe to include only clusters from 0 to 8 and group by 'cluster_id' and calculate the mean for each emotion column
+    emotion_means = merged_df[merged_df['cluster_id'].isin(range(9))].groupby('cluster_id')[emotions_list].mean()
+    # Cluster mapping
+    cluster_mapping = {
+        0: 'Light and Refreshing Lagers',
+        1: 'Dark and Strong Ales',
+        2: 'Hop-Forward IPAs',
+        3: 'Rich and Roasty Stouts',
+        4: 'Belgian and Wheat Styles',
+        5: 'Malty and Balanced Ales',
+        6: 'Citrusy and Balanced IPAs',
+        7: 'Sour and Experimental Beers',
+        8: 'Specialty and Niche Styles'
+    }
+
+    # Radar chart setup
+    categories = ["joy", "trust", "anticipation", "disgust", "surprise", "anger", "sadness", "fear"]
+    num_vars = len(categories)
+
+    # Create angles for radar chart
+    angles = np.linspace(0, 2 * np.pi, num_vars, endpoint=False).tolist()
+    angles += angles[:1]  # Repeat the first angle to close the circle
+
+    # Initialize radar chart
+    fig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
+
+    # Plot each cluster
+    for i, row in emotion_means.iterrows():
+        values = row[categories].values.flatten().tolist()
+        values += values[:1]  # Repeat the first value to close the circle
+        ax.plot(angles, values, label=cluster_mapping[i])
+        #ax.fill(angles, values, alpha=0.1)  # Optional: Add transparency to fill
+
+    # Add labels and title
+    ax.set_xticks(angles[:-1])
+    ax.set_xticklabels(categories, fontsize=10)
+    ax.set_yticks([0.05, 0.10, 0.15])
+    ax.set_yticklabels(["0.05", "0.10", "0.15"], color="grey", fontsize=8)
+    ax.set_ylim(0, 0.16)
+    plt.title("Superposed Radar Chart of Emotions by Cluster", size=16, y=1.1)
+
+    # Add legend with cluster mapping
+    plt.legend(loc="upper right", bbox_to_anchor=(1.3, 1.1), fontsize=8)
+    # Show plot
+    plt.tight_layout()
+    plt.show()
+
+def create_emotions_dataframe(merged_df, descriptors):
+    # Create a list to store emotion results for each descriptor
+    results = []
+    
+    # Iterate over the list of descriptors
+    for descriptor in descriptors:
+        # Vectorize the descriptor search to find rows that match the descriptor
+        vectorized_contains = np.vectorize(lambda x: descriptor.lower() in str(x).lower())
+        descriptor_rows = merged_df[vectorized_contains(merged_df['text'])]
+
+        # List of emotions to compute the mean for
+        emotions_list = ['fear', 'anger', 'trust', 'surprise', 'positive', 'negative', 'sadness', 'disgust', 'joy', 'anticipation']
+
+        # Compute the mean of emotions for the filtered rows
+        emotions_descriptor = descriptor_rows[emotions_list].mean()
+
+        # Append the descriptor and its corresponding emotion means to the results list
+        results.append([descriptor] + emotions_descriptor.tolist())
+
+    # Create a DataFrame from the results
+    emotions_df = pd.DataFrame(results, columns=['Descriptor'] + emotions_list)
+    
+    return emotions_df
+
+def show_spider_emotions_descriptors(emotion_means, cluster_number):
+    # Radar chart setup
+    categories = ["joy", "trust", "anticipation", "disgust", "surprise", "anger", "sadness", "fear"]
+    num_vars = len(categories)
+
+    # Create angles for radar chart
+    angles = np.linspace(0, 2 * np.pi, num_vars, endpoint=False).tolist()
+    angles += angles[:1]  # Repeat the first angle to close the circle
+
+    # Initialize radar chart
+    fig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
+
+    # Plot each cluster
+    for i, row in emotion_means.iterrows():
+        values = row[categories].values.flatten().tolist()
+        values += values[:1]  # Repeat the first value to close the circle
+        ax.plot(angles, values, label=row['Descriptor'])
+        #ax.fill(angles, values, alpha=0.1)  # Optional: Add transparency to fill
+
+    # Add labels and title
+    ax.set_xticks(angles[:-1])
+    ax.set_xticklabels(categories, fontsize=10)
+    ax.set_yticks([0.05, 0.10, 0.15])
+    ax.set_yticklabels(["0.05", "0.10", "0.15"], color="grey", fontsize=8)
+    ax.set_ylim(0, 0.16)
+    plt.title(f"Emotions from top words of cluster {cluster_number}", size=16, y=1.1)
+
+    # Add legend with cluster mapping
+    plt.legend(loc="upper right", bbox_to_anchor=(1.3, 1.1), fontsize=8)
+    # Show plot
+    plt.tight_layout()
+    plt.show()
