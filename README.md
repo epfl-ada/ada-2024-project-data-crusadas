@@ -1,5 +1,5 @@
 
-# From Hops to Glass
+# Find your community
 ## A Comprehensive Analysis of Beer Characteristics
 
 ### Abstract
@@ -10,14 +10,16 @@ We also examine the emotional responses associated with each beer cluster, focus
 To deepen our understanding, we apply principal component analysis (PCA) to extract and interpret the main components that define each cluster. The ultimate goal of this research is to develop a model capable of assigning a beer cluster to a user based on their preferences, allowing the user to discover the cluster that best aligns with their tastes through a web-based questionnaire. This research provides valuable insights for brewers, marketers, and consumers, enhancing the understanding of beer diversity and evolving consumer preferences.
 
 ### Some research questions we aim to answer
-1. What are the main features defining main beer categories?
-2. How do the flavor and appearance features of beers differ across clusters?
-3. What are the seasonal, annual, and geographic patterns in beer preferences and reviews?
-4. Given a review, what is the mood of the user who wrote it?
-5. Is there a connection between beer flavors and the emotional tone of the commentary?
-6. Can we predict a user's preferred beer cluster based on their tastes and preferences?
-7. How do emotional responses vary across different beer categories and clusters?
-
+1. Can beers be clustered based on the characteristics of their reviews?
+2. What are the main features defining main beer categories?
+3. How do the flavor and appearance features of beers differ across clusters?
+4. What are the seasonal, annual, and geographic patterns in beer preferences and reviews?
+5. Do they change over clusters?
+6. Given a review, what is the mood of the user who wrote it?
+7. Is there a connection between beer flavors and the emotional tone of the commentary?
+8. How do emotional responses vary across different beer categories and clusters?
+9. Can we predict a user's preferred beer cluster based on their tastes and preferences?
+10. Which questions are most relevant for assigning a user to a beer cluster?
 
 ### Proposed additional datasets
  There are no direct additional datasets.
