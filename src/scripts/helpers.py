@@ -58,6 +58,14 @@ from multiprocessing import Pool
 #For shapefiles
 import geopandas as gpd
 
+# For brewery visualization
+import pycountry
+import circlify
+import requests
+from PIL import Image, ImageDraw
+from io import BytesIO
+from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+
 import os
 import pickle
 
@@ -722,4 +730,88 @@ def show_spider_emotions_descriptors(emotion_means, cluster_number):
     plt.legend(loc="upper right", bbox_to_anchor=(1.3, 1.1), fontsize=8)
     # Show plot
     plt.tight_layout()
+    plt.show()
+
+# Get ISO country code from a location
+def get_country_code(location):
+    country_map = {country.name: country.alpha_2 for country in pycountry.countries}
+    location_aliases = {
+        "United States": "United States",
+        "Scotland": "United Kingdom",
+        "England": "United Kingdom"
+    }
+    location = location_aliases.get(location, location)  # Handle aliases
+    return country_map.get(location, None)
+
+# Crop image to a circular shape
+def crop_to_circle(image):
+    size = min(image.size)
+    mask = Image.new("L", (size, size), 0)
+    ImageDraw.Draw(mask).ellipse((0, 0, size, size), fill=255)
+    output = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    output.paste(image.resize((size, size)), (0, 0), mask)
+    return output
+
+# Format string with newline after every two words
+def format_text_with_newlines(text):
+    words = text.split()
+    return "\n".join(" ".join(words[i:i + 2]) for i in range(0, len(words), 2))
+
+# Display top 10 breweries for a cluster
+def show_top_breweries(cluster_data, cluster_id, beer_clusters, brewery_info_df):
+    # Map beers to their clusters
+    cluster_mapping = {int(k): v for k, v in beer_clusters.items()}
+    cluster_data['cluster'] = cluster_data['beer_id'].map(cluster_mapping)
+    
+    # Filter reviews by cluster
+    cluster_reviews = cluster_data[cluster_data["cluster"] == cluster_id]
+    
+    # Get top 10 breweries by review count
+    top_breweries = (
+        cluster_reviews['brewery_name']
+        .value_counts()
+        .head(10)
+        .reset_index(name='count')
+    )
+
+    # Merge brewery location info
+    top_breweries = top_breweries.merge(
+        brewery_info_df[['name', 'location']],
+        left_on='brewery_name',
+        right_on='name',
+        how='left'
+    ).drop(columns=['name']).drop_duplicates(subset=['brewery_name'])
+
+    # Add country codes
+    top_breweries['country_code'] = top_breweries['location'].apply(get_country_code)
+    
+    # Prepare data for visualization
+    brewery_data = dict(zip(top_breweries['brewery_name'], top_breweries['count']))
+    formatted_data = {format_text_with_newlines(name): count for name, count in brewery_data.items()}
+
+    # Fetch and display flags for top breweries
+    fig, ax = plt.subplots(figsize=(10, 10))
+    ax.axis('off')
+    ax.set_aspect('equal')
+
+    # Circlify data
+    circles = circlify.circlify(list(formatted_data.values()), show_enclosure=False)
+    for circle, (name, count) in zip(circles, formatted_data.items()):
+        x, y, r = circle.x, circle.y, circle.r * 1.2
+        plain_name = name.replace("\n", " ")
+        
+        # Get flag image for brewery's country
+        country_code = top_breweries[top_breweries['brewery_name'] == plain_name]['country_code'].values[0]
+        flag_url = f"https://flagpedia.net/data/flags/w580/{country_code.lower()}.png"
+        flag_image = Image.open(BytesIO(requests.get(flag_url).content)).convert("RGBA")
+        circular_flag = crop_to_circle(flag_image)
+        
+        # Display brewery data
+        ax.add_patch(plt.Circle((x, y), r, facecolor='none', lw=2))
+        img_resized = OffsetImage(np.array(circular_flag), zoom=r)
+        ax.add_artist(AnnotationBbox(img_resized, (x, y), frameon=False))
+        ax.text(x, y, name, ha='center', va='center', fontsize=max(6, int(r * 40)),
+                fontweight='bold', bbox=dict(facecolor='white', alpha=0.2, edgecolor='none', boxstyle='round,pad=0.3'))
+
+    plt.title(f'Top 10 Breweries in Cluster {cluster_id}')
     plt.show()
