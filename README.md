@@ -1,5 +1,5 @@
 
-# Find your community
+# Find your beer community
 ## A Comprehensive Analysis of Beer Characteristics
 
 ### Abstract
@@ -63,7 +63,7 @@ The method involves processing beer reviews to extract meaningful features for a
 
 Goal: prepare the reviews for principal component analysis. The focus is here on the beer lexicon. 
 
-File: src/analysis/extract_beer_lexicon.ipynb
+File: src/scripts/extract_beer_lexicon.ipynb
 
 #### Principal components analysis (PCA)
 
