@@ -55,7 +55,7 @@ The method involves preprocessing, filtering, and analyzing beer reviews. First,
 
 Goal: Find the main appearance and flavor features of each beer cluster
 
-File: <span style="color:red">TODO</span>
+File: scr/scripts/flavors_NLP
 
 - <b> Beer lexicon extractraction </b>
 
