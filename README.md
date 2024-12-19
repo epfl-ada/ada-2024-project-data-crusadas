@@ -95,24 +95,30 @@ File: src/data/beer_images
 
 ### Organisation within team
 
-Dani:     1. Implementation of the NLP methods for extracting main beer charcteristics 
-          2. Conceptualization and implementation of the PCA method
-          3. Creation of graphs for the analyzing the characteristics within each cluster
+**Dani:**  
+1. Implementation of the NLP methods for extracting main beer characteristics  
+2. Conceptualization and implementation of the PCA method  
+3. Creation of graphs for analyzing the characteristics within each cluster  
 
-Guillen:  1. Implementation of the NLP methods for the beer lexicon extractraction 
-          2. Implemention of Emotion detection (using NRCLex librairy)
-          3. Extraction questions for the PCA axis interpretation
+**Guillen:**  
+1. Implementation of the NLP methods for the beer lexicon extraction  
+2. Implementation of Emotion detection (using NRCLex library)  
+3. Extraction questions for the PCA axis interpretation  
 
-Arnault:  1. Creation of the datastory and visualization and analysis of the results within the project
-          2. Creation of images using Dall.e 
-          3. Cleaning of the result.ipynb and of the GitHub for rendering the project
+**Arnault:**  
+1. Creation of the data story and visualization and analysis of the results within the project  
+2. Creation of images using DALL·E  
+3. Cleaning of the result.ipynb and the GitHub repository for rendering the project  
 
-Anas:     1. Conceptualization and implementation of the clustering method (a lot of work)
-          2. Help in the creation of the PCA methods and coming up with ideas for the different methods in the project
-          3. Creation of the website
+**Anas:**  
+1. Conceptualization and implementation of the clustering method (a lot of work)  
+2. Assistance in the creation of the PCA methods and generating ideas for the different methods in the project  
+3. Creation of the website  
 
-Valentin: 1. Creation of the datastory
-          2. Creation of the website
+**Valentin:**  
+1. Creation of the data story  
+2. Creation of the website  
+
 
 
 
