@@ -1,8 +1,9 @@
 
-# Find your community
+# Find your beer community
 ## A Comprehensive Analysis of Beer Characteristics
 
 ### Abstract
+
 This study employs a range of analytical techniques to uncover trends, preferences, and perceptions within the beer industry. Using natural language processing (NLP) methods, we analyze reviews from BeerAdvocate to identify distinct clusters of beers and explore the key words and characteristics that differentiate them. For each cluster, we highlight the primary flavor and appearance features that define it and compare these characteristics across clusters to identify patterns and differences. Additionally, we investigate how these clusters evolve seasonally, over time, and across different countries.
 
 We also examine the emotional responses associated with each beer cluster, focusing on how specific appearance features and flavor profiles elicit distinct emotions.
@@ -10,6 +11,7 @@ We also examine the emotional responses associated with each beer cluster, focus
 To deepen our understanding, we apply principal component analysis (PCA) to extract and interpret the main components that define each cluster. The ultimate goal of this research is to develop a model capable of assigning a beer cluster to a user based on their preferences, allowing the user to discover the cluster that best aligns with their tastes through a web-based questionnaire. This research provides valuable insights for brewers, marketers, and consumers, enhancing the understanding of beer diversity and evolving consumer preferences.
 
 ### Some research questions we aim to answer
+
 1. Can beers be clustered based on the characteristics of their reviews?
 2. What are the main features defining main beer categories?
 3. How do the flavor and appearance features of beers differ across clusters?
@@ -22,7 +24,16 @@ To deepen our understanding, we apply principal component analysis (PCA) to extr
 10. Which questions are most relevant for assigning a user to a beer cluster?
 
 ### Proposed additional datasets
+
 We did not include additional datasets in this analysis. Our focus remained on the BeerAdvocate dataset due to several key considerations: managing computational complexity, ensuring the coherence of the datastory, and maintaining consistency in the language used within the reviews.
+
+### Data story
+
+Our concept is inspired by the website https://www.16personalities.com/free-personality-test or https://www.whatsyourwhisky.com/de-ch/quiz. However, instead of assigning users a personality type or a whisky type, our goal is to match them with a specific beer cluster based on their preferences (a community). This personalized approach will help users discover beer styles that best align with their taste profiles, enhancing their overall beer experience. 
+
+To achieve this, we first need to extract the most important words from user reviews using Natural Language Processing (NLP) techniques. These key terms help us cluster beers by identifying the most distinctive descriptors. Using a similarity graph, the beers are assigned clusters. Once the beer clusters are established, we analyze them to uncover their defining characteristics, recognize the emotions expressed in their reviews, track their evolution over time, and explore their geographical distribution. This process mirrors how the 16Personalities website explains personality types (once a user is assigned a cluster = a personality type).
+
+With these clusters and their attributes clearly identified, the next step is to create a series of targeted questions. These questions will be designed to distinguish between clusters effectively, enabling us to assign users to the beer community that best fits their taste preferences based on their responses.
 
 ### Methods
 
@@ -44,7 +55,7 @@ The method involves preprocessing, filtering, and analyzing beer reviews. First,
 
 Goal: Find the main appearance and flavor features of each beer cluster
 
-File: <span style="color:red">TODO</span>
+File: scr/scripts/flavors_NLP
 
 - <b> Beer lexicon extractraction </b>
 
@@ -52,7 +63,7 @@ The method involves processing beer reviews to extract meaningful features for a
 
 Goal: prepare the reviews for principal component analysis. The focus is here on the beer lexicon. 
 
-File: src.analysis.extract_beer_lexicon.ipynb
+File: src/scripts/extract_beer_lexicon.ipynb
 
 #### Principal components analysis (PCA)
 
