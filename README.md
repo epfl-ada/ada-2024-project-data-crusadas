@@ -100,7 +100,7 @@ Anas:     1. Conceptualization and implementation of the clustering method (a lo
           2. Help in the creation of the PCA methods and coming up with ideas for the different methods in the project
           3. Creation of the website
 
-Valentin: 1. Attending groups meetings
+Valentin: 1. Creation of the datastory
           2. Creation of the website
 
 
