@@ -29,6 +29,8 @@ We did not include additional datasets in this analysis. Our focus remained on t
 
 ### Data story
 
+Our website can be found [Link text Here](https://anashimmi.github.io/DataCrusadas/)
+
 Our concept is inspired by the website https://www.16personalities.com/free-personality-test or https://www.whatsyourwhisky.com/de-ch/quiz. However, instead of assigning users a personality type or a whisky type, our goal is to match them with a specific beer cluster based on their preferences (a community). This personalized approach will help users discover beer styles that best align with their taste profiles, enhancing their overall beer experience. 
 
 To achieve this, we first need to extract the most important words from user reviews using Natural Language Processing (NLP) techniques. These key terms help us cluster beers by identifying the most distinctive descriptors. Using a similarity graph, the beers are assigned clusters. Once the beer clusters are established, we analyze them to uncover their defining characteristics, recognize the emotions expressed in their reviews, track their evolution over time, and explore their geographical distribution. This process mirrors how the 16Personalities website explains personality types (once a user is assigned a cluster = a personality type).
