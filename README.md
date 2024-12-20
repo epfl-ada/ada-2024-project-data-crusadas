@@ -29,7 +29,7 @@ We did not include additional datasets in this analysis. Our focus remained on t
 
 ### Data story
 
-Our website can be found [Link text Here](https://anashimmi.github.io/DataCrusadas/)
+Our website can be found [Here](https://anashimmi.github.io/DataCrusadas/)
 
 Our concept is inspired by the website https://www.16personalities.com/free-personality-test or https://www.whatsyourwhisky.com/de-ch/quiz. However, instead of assigning users a personality type or a whisky type, our goal is to match them with a specific beer cluster based on their preferences (a community). This personalized approach will help users discover beer styles that best align with their taste profiles, enhancing their overall beer experience. 
 
